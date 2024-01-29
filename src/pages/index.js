@@ -193,7 +193,7 @@ export default function Home() {
 
           <div className="sm:py-[120px] py-[20px] md:px-0 px-3">
             <h1 className="text-center sm:text-[56px] text-[20px]">
-              <span className="banner-span">Turning incrediblee </span> <br />
+              <span className="banner-span">Turning incredible </span> <br />
               <em> mobile app development</em> ideas to reality
             </h1>
 
