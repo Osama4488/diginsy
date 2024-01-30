@@ -173,7 +173,7 @@ export default function Home() {
       <Modal open={open} setOpen={setOpen} />
       <ModalPricing open={openPricing} setOpen={setOpenPricing} />
       <div className="text-[red] banner ">
-        <div className="max-w-[1170px] mx-auto">
+        <div className="md:max-w-[1170px] max-w-full mx-auto">
           <header className="sm:pt-[10px] pt-[20px]">
             <div class="container  relative">
               <div class="row flex justify-between md:items-start items-center smpx-0 px-5 ">
@@ -386,7 +386,7 @@ export default function Home() {
 
       {/* third Section */}
       <section class="process">
-        <div class="container sm:px-0 px-3 max-w-[1170px] mx-auto">
+        <div class="container md:px-0 px-3 max-w-[1170px] mx-auto">
           <h2 className="">
             Uniform process to create <br /> immaculate &amp; exhilarating
             experiences{" "}
@@ -403,7 +403,7 @@ export default function Home() {
           <div class="process-list process-list-slider owl-carousel owl-loaded mt-[30px]">
             <div class="owl-stage-outer">
               <div
-                class="owl-stage flex sm:flex-row flex-col"
+                class="owl-stage flex md:flex-row flex-col"
                 // style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1140px;"
               >
                 <div
