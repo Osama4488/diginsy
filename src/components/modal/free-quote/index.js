@@ -2,8 +2,9 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { IoMdClose } from "react-icons/io";
 
-export default function Modal({ open, setOpen }) {
+export default function Modal({ open, setOpen, title }) {
   const cancelButtonRef = useRef(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -36,11 +37,11 @@ export default function Modal({ open, setOpen }) {
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed z-10 inset-0 overflow-y-auto"
+        className="fixed z-10 inset-0 overflow-y-auto -2"
         initialFocus={cancelButtonRef}
         onClose={setOpen}
       >
-        <div className="flex items-center justify-center min-h-screen">
+        <div className="flex items-center justify-center min-h-screen md:px-0 pl-[1px] pr-[5px]">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -62,20 +63,37 @@ export default function Modal({ open, setOpen }) {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="relative bg-white rounded-lg w-[900px] mx-auto flex">
-              <div className="w-30">
+            <div className="relative bg-white rounded-lg md:w-[900px] w-full mx-auto flex ">
+              {/* <button
+                data-fancybox-close=""
+                class=" bg-[blue] w-[38px] h-[42px] "
+                title="Close"
+              > */}
+              {/* <IoMdClose
+                className="fancybox-close-small"
+                size={20}
+                color="#fff"
+              /> */}
+              {/* </button> */}
+              <button
+                className="absolute top-0 right-0 p-2"
+                onClick={() => setOpen(false)} // Close modal on button click
+              >
+                <IoMdClose className="text-gray-600" size={24} />
+              </button>
+              <div className="md:w-[50%] md:block hidden w-full">
                 {/* Dummy image */}
                 <img
                   src="https://www.applistix.com/lp-app-development//assets/images/popup-ban.jpg"
                   alt="Dummy Image"
-                  className="w-full h-full"
+                  className=" h-full"
                 />
               </div>
-              <div className="w-70 px-[25px] pt-[10px] popup-content">
+              <div className="md:w-70 w-full md:px-[25px] px-[12px] pt-[10px] md:mb-0 pb-[30px] popup-content">
                 <h2>GET A FREE QUOTE</h2>
                 <p>
                   Discuss your app idea with our consultants and we'll help you{" "}
-                  <br />
+                  <br className="md:block hidden" />
                   transform them to multi-million dollar reality. It's Free!
                 </p>
                 {/* Form */}
@@ -83,8 +101,8 @@ export default function Modal({ open, setOpen }) {
                   className="flex flex-col justify-start h-full"
                   onSubmit={handleSubmit}
                 >
-                  <div className="flex justify-between items-start">
-                    <div className="w-[49%]">
+                  <div className="flex md:flex-row flex-col justify-between items-start">
+                    <div className="md:w-[49%] w-full">
                       <input
                         type="text"
                         className={`input-type mb-4  ${
@@ -122,7 +140,7 @@ export default function Modal({ open, setOpen }) {
                     </div>
 
                     <textarea
-                      className={`input-type mb-4 ml-2 ${
+                      className={`input-type mb-4 md:ml-2 ml-0 md:h-[186px] h-[86px] ${
                         projectDescription.trim()
                           ? ""
                           : "border-b-2 border-red-500"
@@ -133,7 +151,7 @@ export default function Modal({ open, setOpen }) {
                       placeholder="Enter a brief description of your App Project"
                     />
                   </div>
-                  <p class="form_tagline mt-[0px] text-[12px]">
+                  <p class="form_tagline text-[12px] md:mt-0 mt-[25px]">
                     {" "}
                     <input type="checkbox" name="agree" /> &nbsp; To receive our
                     weekly Newsletter/SMS and offers check here. You can
@@ -143,7 +161,7 @@ export default function Modal({ open, setOpen }) {
                   <div className="flex justify-center items-center relative -top-[16px]">
                     <button
                       type="submit"
-                      className="btn-hero-1 uppercase w-[198px] text-[23px] flex justify-center items-center "
+                      className="btn-hero-1 uppercase md:w-[198px] w-full text-[23px] flex justify-center items-center "
                       name="0"
                       data-fancybox=""
                       data-src="#popupform"

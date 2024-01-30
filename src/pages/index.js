@@ -5,7 +5,7 @@ import Slider from "react-slick";
 // import { Button, Flex } from "antd";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import Modal from "../components/modal";
+import Modal from "../components/modal/free-quote";
 import { useRouter } from "next/router";
 
 export default function Home() {
@@ -757,6 +757,6 @@ export default function Home() {
     //     </div>
     //   </footer>
     // </div>
-    <div></div>
+    <div>Empty page</div>
   );
 }

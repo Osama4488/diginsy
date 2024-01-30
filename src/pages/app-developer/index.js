@@ -5,7 +5,10 @@ import Slider from "react-slick";
 // import { Button, Flex } from "antd";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import Modal from "../../components/modal";
+import Modal from "../../components/modal/free-quote";
+import ModalPricing from "../../components/modal/calculate-pricing";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 import { useRouter } from "next/router";
 
@@ -13,12 +16,17 @@ export default function Home() {
   const [tab, setTab] = useState("all");
   const [selectedImage, setSelectedImage] = useState(null);
   const [open, setOpen] = useState(false);
+  const [openPricing, setOpenPricing] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const openImage = (imgSrc) => {
     setSelectedImage(imgSrc);
   };
-  const handleGetQuoteClick = () => {
+  const handleGetQuoteClick = (e) => {
     setOpen(true);
+  };
+  const handleGetPricingClick = (e) => {
+    setOpenPricing(true);
   };
   useEffect(() => {
     console.log(open, "open");
@@ -163,11 +171,12 @@ export default function Home() {
   return (
     <div>
       <Modal open={open} setOpen={setOpen} />
+      <ModalPricing open={openPricing} setOpen={setOpenPricing} />
       <div className="text-[red] banner ">
         <div className="max-w-[1170px] mx-auto">
-          <header className="pt-[10px]">
+          <header className="sm:pt-[10px] pt-[20px]">
             <div class="container  relative">
-              <div class="row flex justify-between  ">
+              <div class="row flex justify-between md:items-start items-center smpx-0 px-5 ">
                 <div class="">
                   <a href="/">
                     <img
@@ -177,7 +186,7 @@ export default function Home() {
                     />
                   </a>
                 </div>
-                <div class="">
+                <div class="md:block hidden">
                   <a
                     href="#"
                     class="btn-red"
@@ -185,15 +194,45 @@ export default function Home() {
                     data-fancybox=""
                     data-src="#popupform"
                     title="Get a Quote"
+                    onClick={handleGetQuoteClick}
                   >
                     Get a Quote
                   </a>
                 </div>
+
+                <div
+                  onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+                  className="md:hidden block bg-[#c52026] p-2 h-[44px]"
+                >
+                  {/* <RxHamburgerMenu size={30} /> */}
+                  {isMobileNavOpen ? (
+                    <FaTimes size={30} className="text-white text-lg" />
+                  ) : (
+                    <RxHamburgerMenu size={30} />
+                  )}
+                </div>
               </div>
+              {isMobileNavOpen && (
+                <div className="md:hidden block top-0 left-0 w-full h-screen bg-[#000]">
+                  <ul className="flex flex-col items-center justify-center h-full">
+                    <li>
+                      <a href="#" className="text-lg font-semibold py-2">
+                        Link 1
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" className="text-lg font-semibold py-2">
+                        Link 2
+                      </a>
+                    </li>
+                    {/* Add more mobile navigation links as needed */}
+                  </ul>
+                </div>
+              )}
             </div>
           </header>
 
-          <div className="sm:py-[120px] py-[20px] md:px-0 px-3">
+          <div className="sm:py-[120px] py-[40px] smpb-0 pb-[40px] md:px-0 px-3">
             <h1 className="text-center sm:text-[56px] text-[20px]">
               <span className="banner-span">Turning incredible </span> <br />
               <em> mobile app development</em> ideas to reality
@@ -216,11 +255,12 @@ export default function Home() {
 
               <a
                 href="javascript:;"
-                class="btn-hero-2 md:ml-2 ml-0 sm:mt-[50px] mt-[10px] uppercase"
+                class="btn-hero-2 md:ml-2 ml-0 sm:mt-[50px] mt-[40px] uppercase"
                 name="0"
                 data-fancybox=""
                 data-src="#popupform"
                 title="GET A FREE QUOTE"
+                onClick={handleGetPricingClick}
               >
                 Calculate Pricing
               </a>
@@ -306,26 +346,64 @@ export default function Home() {
         </div>
       </section>
 
+      <section>
+        <div class="second-main-content sm:text-left text-center pb-[30px]">
+          <div class="text-block">
+            <h2 class="text-block-heading">
+              We Create Mobile Apps That Take Users by Storm
+            </h2>
+            <p className="text-[#7d7d7d]">
+              Our mobile app developers and mobile app development team includes
+              senior business consultants and analysts, UX experts and engineers
+              who are proficient and fully capable of building native and
+              cross-platform mobile applications that take users by storm.
+            </p>
+          </div>
+          <div class="text-block">
+            <h2 class="text-block-heading">Ideation and Strategy</h2>
+            <p className="text-[#7d7d7d]">
+              Once we receive an order, our mobile app developer’s sit down and
+              understand all the minor and major expectations that our clients
+              expect from us. We study the ins and outs of the idea and devise a
+              technical solution with an eye for a future growth. We craft our
+              creation with a unilateral goal: To dedicate ourselves and
+              innovate digital solutions which satiate our customers and not
+              merely deliver a product but present them with a scintillating
+              masterpiece. With our hard work and persistence, we now stand as a
+              leader in the industry of Mobile app development.
+            </p>
+            <br />
+            <p className="text-[#7d7d7d]">
+              Applistix is transparent in process and keeps customer constantly
+              at ease, no matter which way you go – native or cross-platform –
+              Our mobile app experts will help you figure out what works best
+              for your product. Call Applistix now and talk about your project
+              in detail.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* third Section */}
       <section class="process">
-        <div class="container max-w-[1170px] mx-auto">
-          <h2>
+        <div class="container sm:px-0 px-3 max-w-[1170px] mx-auto">
+          <h2 className="">
             Uniform process to create <br /> immaculate &amp; exhilarating
             experiences{" "}
           </h2>
-          <p class="mb-hide">
+          <p class="">
             Anything to Everything; our 4-Step process is strategically designed
             to guide <br />
             businesses &amp; provide them the best there is.{" "}
           </p>
 
-          <div className="flex justify-center">
+          <div className=" justify-center md:flex hidden">
             <img src="/images/tree-img.png" />
           </div>
           <div class="process-list process-list-slider owl-carousel owl-loaded mt-[30px]">
             <div class="owl-stage-outer">
               <div
-                class="owl-stage"
+                class="owl-stage flex sm:flex-row flex-col"
                 // style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1140px;"
               >
                 <div
@@ -403,9 +481,9 @@ export default function Home() {
       {/* fourth section */}
 
       <section class="portfolio down-section">
-        <div class="container max-w-[1170px] mx-auto">
+        <div class="container md:max-w-[1170px] max-w-[full] md:px-0 px-3 mx-auto">
           <h2>Our Portfolio</h2>
-          <p>
+          <p className="">
             We stay true to our values and deliver best mobile game app
             development solutions, which are not only coherent and comprehensive
             but also, add extra value to your business.
@@ -424,7 +502,7 @@ export default function Home() {
               </button>
             ))}
           </div> */}
-          <div className="grid grid-cols-4 gap-8 max-w-[400px] mx-auto">
+          <div className="grid grid-cols-4 md:gap-8 md:max-w-[400px] max-w-full mx-auto">
             {tabsArr.map((tabItem) => (
               <button
                 key={tabItem.title}
@@ -438,13 +516,13 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="grid grid-cols-2 gap-8 max-w-[700px] mx-auto mb-[80px]">
+          <div className="grid grid-cols-2 gap-8 md:max-w-[700px] max-w-full mx-auto mb-[80px]">
             {tabsArr
               .find((tabItem) => tabItem.title === tab)
               ?.images.map((imgSrc, idx) => (
                 // <div key={idx}>
                 <img
-                  className="w-[386px] h-[468px] object-contain cursor-pointer"
+                  className="w-[386px] md:h-[468px] h-[214px] object-cover cursor-pointer"
                   src={imgSrc}
                   alt={`Left Image ${idx}`}
                   onClick={() => openImage(imgSrc)}
@@ -479,21 +557,24 @@ export default function Home() {
             <Button type="link">Link Button</Button>
           </Flex> */}
 
-          <a
-            href="javascript:;"
-            class="btn-blue-border various uppercase"
-            name="0"
-            data-fancybox=""
-            data-src="#popupform"
-            title="Get a Quote"
-          >
-            Get a Quote
-          </a>
+          <div>
+            <a
+              href="javascript:;"
+              class="btn-blue-border various uppercase"
+              name="0"
+              data-fancybox=""
+              data-src="#popupform"
+              title="Get a Quote"
+              onClick={handleGetQuoteClick}
+            >
+              Get a Quote
+            </a>
+          </div>
         </div>
       </section>
 
       {/* fifth section */}
-      <section class="services">
+      <section class="services md:px-0 px-3">
         <h2>
           We've Got Your Back{" "}
           <span>
@@ -574,18 +655,19 @@ export default function Home() {
 
       {/* sixth section */}
       <section class="footer-form">
-        <div class="container max-w-[980px] mx-auto py-[80px] px-[40px] bg-[#fff]">
+        <div class="container md:max-w-[980px] max-w-full mx-auto pt-[23px] pb-[60px] md:pb-[120px] md:px-[40px] px-[15px] bg-[#fff]">
           <div class="row">
             <div class="col-md-10 col-md-push-1">
               <h2>Feel Free to Contact Us</h2>
               <p>
                 Discuss your app idea with our consultants and we'll help you
-                transform them to multi-million dollar reality. <br />
+                transform them to multi-million dollar reality.{" "}
+                <br className="md:block hidden" />
                 It's Free!
               </p>
 
-              <form className="flex justify-between max-w-[700px] mx-auto mt-[50px]">
-                <div className="w-[40%] flex flex-col">
+              <form className="flex md:flex-row flex-col justify-between md:max-w-[700px] max-w-full mx-auto md:mt-[50px] mt-[30px]">
+                <div className="md:w-[40%] w-full flex flex-col">
                   <input
                     type="text"
                     class="input-type"
@@ -612,10 +694,10 @@ export default function Home() {
                     // onChange={(phone) => this.setState({ phone })}
                   />
                 </div>
-                <div className="w-[58%]">
+                <div className="md:w-[58%] w-full">
                   <textarea
-                    className="input-type"
-                    rows="8" // Set the number of visible rows
+                    className="input-type input-type-textarea"
+                    // rows="9" // Set the number of visible rows
                     placeholder="Enter a brief description of your App Project"
                   />
                 </div>
@@ -631,7 +713,7 @@ export default function Home() {
               <div className="flex justify-center items-center">
                 <a
                   href="javascript:;"
-                  class="btn-hero-1 uppercase w-[292px] text-[23px] flex justify-center items-center"
+                  class="btn-hero-1 uppercase md:w-[292px] w-full text-[23px] flex justify-center items-center"
                   name="0"
                   data-fancybox=""
                   data-src="#popupform"
@@ -657,7 +739,7 @@ export default function Home() {
           <h2>Proud Customers</h2>
           <p>
             We take pride in delivering novel application designs and engaging{" "}
-            <br />
+            <br className="md:block hidden" />
             experiences to clients globally.
           </p>
 
@@ -682,7 +764,7 @@ export default function Home() {
       {/* carousel bottom section */}
       <section class="client mt-[30px] pb-[40px]">
         <div class="container max-w-[1170px] mx-auto">
-          <div class="row grid grid-cols-6 gap-8">
+          <div class="row grid md:grid-cols-6 grid-cols-3 md:gap-8 gap-6 ">
             <div class="col-md-2 flex justify-center">
               <img
                 src="https://www.applistix.com/lp-app-development/assets/images/client-1.jpg"
@@ -724,25 +806,26 @@ export default function Home() {
       </section>
 
       {/* footer */}
-      <footer>
+      <footer className="md:px-0 px-5">
         <div class="container max-w-[1170px] mx-auto ">
           <div className="flex flex-col items-center justify-center">
             <h2>Let’s work together!</h2>
 
             <a
-              style={{ marginTOp: "20px" }}
+              //   style={{ marginTop: "20px" }}
               href="javascript:;"
-              class="btn-footer uppercase mt-[10px]"
+              class="btn-footer uppercase mt-[10px] "
               name="0"
               data-fancybox=""
               data-src="#popupform"
               title="GET A FREE QUOTE"
+              onClick={handleGetQuoteClick}
             >
               Submit your Brief
             </a>
           </div>
-          <div class="row mt-[100px]">
-            <div class="col-md-12 disclaimer">
+          <div class="row md:mt-[100px] mt-[20px] md:py-0 pb-[50px] pt-[30px]">
+            <div class="col-md-12 disclaimer flex md:flex-row flex-col items-center justify-between">
               <div class="col-md-4">All Rights Reserved © Applistix </div>
               <div class="col-md-8 text-right">
                 <a href="https://www.applistix.com/lp-app-development/terms-and-conditions/">
