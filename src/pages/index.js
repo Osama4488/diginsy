@@ -170,7 +170,8 @@ export default function Home() {
                 <div class="">
                   <a href="/">
                     <img
-                      src="https://www.applistix.com/lp-app-development/assets/images/logo.png"
+                      className="w-[60px] object-contain"
+                      src="https://diginsy.com/wp-content/uploads/2023/06/logo-3.png"
                       alt=""
                     />
                   </a>
