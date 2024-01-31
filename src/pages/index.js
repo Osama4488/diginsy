@@ -363,7 +363,7 @@ export default function Home() {
               </div>
             </header>
 
-            <div className="sm:py-[120px] py-[40px] smpb-0 pb-[84px] md:px-0 px-3">
+            <div className="sm:pt-[90px] sm:pb-[140px] py-[40px] smpb-0 pb-[84px] md:px-0 px-3">
               <h1 className="text-center sm:text-[56px] text-[20px]">
                 <span className="banner-span">Turning incredible </span> <br />
                 <em> mobile app development</em> ideas to reality
