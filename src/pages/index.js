@@ -307,7 +307,7 @@ export default function Home() {
           <a
             href="#"
             //   class="btn-red"
-            className="btn-red top-quote md:block hidden"
+            className="btn-red top-quote md:block hidden z-20"
             name="0"
             data-fancybox=""
             data-src="#popupform"
@@ -498,15 +498,19 @@ export default function Home() {
                   key={index}
                 >
                   <img
-                    className={`w-full bg-img-1 animation-image ${
+                    className={`w-full bg-img-1 animation-image md:h-[700px] ${
                       currentSlide === index ? "animate" : ""
                     }`}
                     src={image.img1}
                     alt={`Slide ${index + 1}`}
                   />
 
-                  <img
+                  {/* <img
                     className="absolute md:top-[200px] top-[111px] md:left-[280px] left-[22px] md:w-auto md:h-auto w-[300px] h-[319px] object-contain transition-opacity duration-500 delay-500"
+                    src={image.img2}
+                  /> */}
+                  <img
+                    className="md:absolute absolute-center md:w-auto md:h-auto w-[300px] h-[319px] object-contain transition-opacity duration-500 delay-500"
                     src={image.img2}
                   />
                 </div>

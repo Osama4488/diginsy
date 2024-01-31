@@ -1174,6 +1174,24 @@ border: 1px solid #fff;
 }
 
 
+.absolute-center {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width:768px) {
+  .absolute-center {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+
 
 
 /* animation to image */
