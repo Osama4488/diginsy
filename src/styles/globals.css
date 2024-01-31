@@ -5,14 +5,16 @@
 
 
   body {
-    font-family: Lato,sans-serif;
+  
+      font-family: sans-serif;
+    
     font-size: 14px;
     color: #7d7d7d;
     overflow-x: hidden;
 }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-  font-family: inherit;
+   /* font-family: inherit; */
   font-weight: 500;
   line-height: 1.1;
 }
@@ -27,22 +29,34 @@ div{
 .btn-red{
   background: linear-gradient(0deg,rgba(132,22,26,1) 0,rgba(197,32,38,1) 100%);
   font-size: 14px;
-  text-shadow: 0 4px 2px #8e1b1f;
-  width: 181.44px;
+  /* text-shadow: 0 4px 2px #8e1b1f; */
+  /* text-shadow: 0 4px 2px #8e1b1f; */
+  width:fit-content ;
   padding: 10px 40px;
     padding-top: 10px;
-    padding-right: 40px;
+    padding-right: 35px;
     padding-bottom: 10px;
-    padding-left: 40px;
+    padding-left: 35px;
+    color: #fff;
+    
+   
+  
+    height: 40px;
+
+    position: absolute;
+    right: 0;
+    top: 23px;
+    padding: 10px 40px;
     color: #fff;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
-    height: 40px;
     /* position: absolute;
     right: 0;
     top: 23px; */
 }
+
+
 
 .banner{
 
@@ -148,16 +162,77 @@ div{
 .btn-hero-1:hover::before {
   width: 400px;
   height: 400px;
-  opacity: 0;
+  opacity: 0; 
 }
 .btn-hero-2{
-  padding: 14px 40px;
+  /* padding: 14px 40px;
   color: #fff;
   font-size: 17px;
   background: #253595;
 
   display: inline-block;
+  font-weight: 600; */
+  padding: 14px 40px;
+  color: #fff;
+  font-size: 17px;
+  background: #253595;
+  display: inline-block;
   font-weight: 600;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  height: 53.5px;
+  top: 30px;
+}
+.btn-hero-2::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s, opacity 0.4s;
+  pointer-events: none;
+  z-index: 1;
+}
+/* a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+
+  vertical-align: top;
+} */
+
+  .icon-react{
+    color: #000;
+    transition: color 0.3s ease;
+    
+
+  }
+/* .icon:hover {
+  color: #fff;
+} */
+.first:hover .icon-react {
+  color: #fff;
+
+}
+h2 {
+  font-family: 'Lato', sans-serif; /* Specify Lato Sans as the font family */
+  font-weight: 700 !important; /* Set the font weight to 800 */
+}
+p{
+  font-family: 'Lato', sans-serif;
+}
+
+.btn-hero-2:hover::before {
+  width: 400px;
+  height: 400px;
+  opacity: 0; 
 }
 
 .main-content{
@@ -465,6 +540,11 @@ section.services .item>div {
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
+}
+
+.images-tran{
+  transition: all .2s ease-in;
+
 }
 section.services .item>div:hover {
   transform: scale(1.05);
@@ -797,6 +877,160 @@ span.author-name strong {
 }
 
 
+.show-discuss-input{
+  height: 60px;
+  display: block;
+  margin: 0 auto;
+  background: #fbfcfd;
+  border: 1px solid #e5e5e5 !important;
+  padding: 17px 10px 16px 20px;
+  width: 100%;
+}
+.form-button
+{
+  font-size: 17px;
+  background-color: #c52026;
+  border-color: #c52026;
+  color: #fff;
+  height: 60px;
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+    border: 1px solid #e5e5e5;
+    padding: 17px 10px 16px 20px;
+    cursor: pointer;
+}
+
+
+/* portfolio overlay */
+#portfolio .tile:hover .portoflio-overlay {
+  left: -25px;
+}
+.portoflio-overlay {
+  background: #2253ed;
+  position: absolute;
+  width: 89%;
+  z-index: 9;
+  bottom: 90px;
+  padding: 32px 28px 28px 32px;
+  color: #fff;
+  text-align: left;
+  left: -120%;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+.a-terms:hover{
+ 
+
+  color: #c52026!important;
+}
+
+.a-terms{
+  
+  margin: 0 6px;
+}
+
+
+.carousel-image-second{
+  width: 100%;
+  max-width: initial;
+  border: 6px solid #fff;
+}
+
+
+#slider-carousel .slick-prev{
+  position: absolute !important;
+  top: 56% !important;
+  font-size: 16px !important;
+  left: 20px !important;
+  background: #c52026 !important;
+  font-weight: 700 !important;
+  padding: 11px !important;
+  width: 42px !important;
+  text-align: center;
+  height: 42px !important;
+  /* color: #fff ;   */
+  border-radius: 100% !important;
+}
+
+
+
+.slick-next{
+  position: absolute !important;
+  top: 56% !important;
+  font-size: 16px !important;
+  right: 20px !important;
+  background: #c52026 !important;
+  font-weight: 700 !important;
+  padding: 11px !important;
+  width: 42px !important;
+  text-align: center !important;
+  height: 42px !important;
+  color: #fff;
+  border-radius: 100% !important;
+}
+
+
+
+
+
+#second-section-carousel .slick-second-prev {
+  position: absolute !important;
+  top: 56% !important;
+  left: -46px !important;
+  width: 52px !important;
+  height: 121px !important;
+  padding: 0 !important;
+  background-image: url('/images/Frame 2-new.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  z-index: 9999; 
+
+}
+#second-section-carousel .slick-prev::before{
+  content:""
+}
+#second-section-carousel .slick-second-next {
+  position: absolute !important;
+  top: 56% !important;
+  left: 8px !important;
+  width: 52px !important;
+  height: 121px !important;
+  padding: 0 !important;
+  background-image: url('/images/Frame 1-new.svg') !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  cursor: pointer;
+  z-index: 9999; 
+
+}
+#second-section-carousel .slick-next::before{
+  content:""
+}
+/* #second-section-carousel .slick-next {
+  position: absolute !important;
+  top: 56% !important;
+  left: 20px !important;
+  width: 42px !important;
+  height: 121px !important;
+  padding: 0 !important;
+  background-image: url('/images/Frame 1.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  z-index: 9999; 
+  background-color: #182e84;
+} */
+
+
+
+
+.slick-prev,
+.slick-next {
+  z-index: 9999; /* Adjust the z-index as needed */
+}
 
 
 
