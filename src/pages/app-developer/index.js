@@ -31,6 +31,8 @@ export default function Home() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [errorToast, setErrorToast] = useState(false);
   const [showDiscuss, setShowDiscuss] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const openImage = (imgSrc) => {
     setSelectedImage(imgSrc);
   };
@@ -155,6 +157,7 @@ export default function Home() {
   };
   const settingsSecond = {
     // dots: true,
+    afterChange: (current) => setCurrentSlide(current),
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -205,13 +208,13 @@ export default function Home() {
     setTab(title);
   };
 
-  useEffect(() => {
-    // Close error toast after 8 seconds
-    const timeout = setTimeout(() => {
-      setShowDiscuss(true);
-    }, 5000);
-    return () => clearTimeout(timeout);
-  }, []);
+  //   useEffect(() => {
+  //     // Close error toast after 8 seconds
+  //     const timeout = setTimeout(() => {
+  //       setShowDiscuss(true);
+  //     }, 5000);
+  //     return () => clearTimeout(timeout);
+  //   }, []);
 
   return showDiscuss ? (
     <div className="relative">
@@ -324,7 +327,7 @@ export default function Home() {
                   <div class="md:block hidden"></div>
 
                   <div
-                    onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+                    // onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
                     className="md:hidden block bg-[#c52026] p-2 h-[44px]"
                   >
                     {/* <RxHamburgerMenu size={30} /> */}
@@ -396,7 +399,7 @@ export default function Home() {
 
         <section class="hm-col1 flex md:flex-row flex-col md:px-0 px-5 relative">
           <div class="col-md-6 md:text-left text-center">
-            <div class="main-content">
+            <div class="main-content md:h-[900px] h-auto">
               <div class="text-block">
                 <h2 style={{ fontWeight: "800" }} class="text-block-heading">
                   Delivering innovative and top-tier mobile application
@@ -467,34 +470,38 @@ export default function Home() {
             class="col-md-6 pd-left-0 relative "
           >
             <Slider {...settingsSecond}>
-              {dummyImages.map((image, index) => (
-                // <div
-                //   className="carousel-image-second relative w-full -top-[50px] -z-50 h-[900px]"
-                //   key={index}
-                // >
-                //   <img
-                //     className="w-full"
-                //     src={image.img1}
-                //     alt={`Slide ${index + 1}`}
-                //   />
-
-                //   <img
-                //     className="absolute top-[200px] md:left-[280px] left-[22px] md:w-auto md:h-auto w-[300px] h-[319px] object-contain"
-                //     src={image.img2}
-                //   />
-                // </div>
+              {/* {dummyImages.map((image, index) => (
                 <div
-                  className="carousel-image-second relative w-full -top-[50px] -z-50 md:h-[900px] h-[600px]"
+                  className="carousel-image-second relative w-full -top-[50px] -z-50 md:h-[900px] h-[400px]"
                   key={index}
                 >
                   <img
-                    className="w-full"
+                    className="w-full bg-img-1 animation-image"
                     src={image.img1}
                     alt={`Slide ${index + 1}`}
                   />
 
                   <img
-                    className="absolute top-[200px] md:left-[280px] left-[22px] md:w-auto md:h-auto w-[300px] h-[319px] object-contain transition-opacity duration-500 delay-500"
+                    className="absolute md:top-[200px] top-[111px] md:left-[280px] left-[22px] md:w-auto md:h-auto w-[300px] h-[319px] object-contain transition-opacity duration-500 delay-500"
+                    src={image.img2}
+                  />
+                </div>
+              ))} */}
+              {dummyImages.map((image, index) => (
+                <div
+                  className="carousel-image-second relative w-full -top-[50px] -z-50 md:h-[900px] h-[400px]"
+                  key={index}
+                >
+                  <img
+                    className={`w-full bg-img-1 animation-image ${
+                      currentSlide === index ? "animate" : ""
+                    }`}
+                    src={image.img1}
+                    alt={`Slide ${index + 1}`}
+                  />
+
+                  <img
+                    className="absolute md:top-[200px] top-[111px] md:left-[280px] left-[22px] md:w-auto md:h-auto w-[300px] h-[319px] object-contain transition-opacity duration-500 delay-500"
                     src={image.img2}
                   />
                 </div>
@@ -655,7 +662,7 @@ export default function Home() {
                 .map((tabItem) => (
                   <button
                     key={tabItem.title}
-                    className={`btn fil-cat uppercase w-fit ${
+                    className={` fil-cat uppercase w-fit ${
                       tab === tabItem.title ? "active fil-cat-hover" : ""
                     }`}
                     onClick={() => handleTabClick(tabItem.title)}

@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
+
 
 @font-face {
   font-family: 'Lato';
@@ -76,6 +77,32 @@ div{
   z-index: 0;
   overflow: hidden;
 }
+
+  #second-section-carousel{
+    position: absolute;
+    right: 0;
+    top: -40px;
+    border: 10px solid #fff;
+  }
+
+
+  @media (max-width:768px){
+    #second-section-carousel{
+      position: relative;
+    top: -93px;
+
+    
+    }
+  }
+  @media (max-width:768px){
+    .bg-img-1{
+      position: relative;
+      top: 168px;
+    
+    }
+  }
+
+
 
 #second-section-carousel-screen {
   position: absolute !important;
@@ -237,7 +264,7 @@ div{
 }
 h1,h2 {
   font-family:'Lato',  sans-serif; /* Specify Lato Sans as the font family */
-  font-weight: 700 !important; 
+  font-weight: 800 !important; 
 }
 p{
   font-family: 'Lato', sans-serif;
@@ -1028,7 +1055,7 @@ span.author-name strong {
   #second-section-carousel .slick-second-prev{
   background-image: url('/images/left-blue.png');
   left: 146px !important;
-  top: 85% !important;
+  top: 105% !important;
   width: 30px !important;
   height: 30px !important;
   }
@@ -1054,7 +1081,7 @@ span.author-name strong {
   #second-section-carousel .slick-second-next{
   background-image: url('/images/right-blue.png') !important;
   left: 190px !important;
-  top: 85% !important;
+  top: 105% !important;
   width: 30px !important;
   height: 30px !important;
 
@@ -1105,40 +1132,6 @@ border: 1px solid #fff;
 
 
 
-/* second section mobile carousel */
-/* .slick-next-mobile{
-  position: absolute !important;
-  top: 56% !important;
-  font-size: 16px !important;
-  right: 116px !important;
-  background: #c52026 !important;
-  font-weight: 700 !important;
-  padding: 11px !important; 
-  width: 42px !important;
-  text-align: center !important;
-  height: 42px !important;
-
-  border-radius: 100% !important;
-} */
-
-
-
-
-/* #second-section-carousel .slick-next {
-  position: absolute !important;
-  top: 56% !important;
-  left: 20px !important;
-  width: 42px !important;
-  height: 121px !important;
-  padding: 0 !important;
-  background-image: url('/images/Frame 1.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  z-index: 9999; 
-  background-color: #182e84;
-} */
-
 
 
 
@@ -1150,31 +1143,44 @@ border: 1px solid #fff;
 
 
 
-
-
-/* .banner a{
-  padding: 14px 40px;
+/* animation to image */
+/* .animation-image { 
+  background-color: #000;  
   color: #fff;
-  font-size: 17px;
-  background: #c52026;
-  margin-top: 50px;
-  display: inline-block;
-  font-weight: 600;
-
- 
-  
-
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
 }
 
-.banner a:hover{
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px transparent;
-  position: relative;
-}
-a{
-  transition: all .2s ease-in;
-  outline: 0!important;
+@keyframes fadeIn {  
+  from {  
+    opacity: 0;  
+  }  
+  to {  
+    opacity: 1;  
+  }  
 } */
+
+.animation-image { 
+  background-color: #000;  
+  color: #fff;
+  text-align: center;
+  opacity: 0;
+}
+
+.animate {
+    animation: fadeIn 0.1s ease-in forwards;
+}
+
+@keyframes fadeIn {  
+  from {  
+    opacity: 0;  
+  }  
+  to {  
+    opacity: 1;  
+  }  
+}
+
 
 
 /* 
