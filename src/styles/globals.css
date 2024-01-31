@@ -640,7 +640,7 @@ section.services .item>div i {
   -moz-osx-font-smoothing: grayscale;
 }
 section.footer-form {
-  padding: 100px 0;
+  padding: 20px 0;
   color: #000;
   background: url(https://www.applistix.com/lp-app-development/assets/images/footer-frm-bg.jpg) left top;
   text-align: center;
@@ -1023,8 +1023,19 @@ span.author-name strong {
   width: 42px !important;
   text-align: center !important;
   height: 42px !important;
-  /* color: #fff; */
+
   border-radius: 100% !important;
+  /* position: absolute !important;
+  top: 56% !important;
+  right: 20px !important;
+  width: 52px !important;
+  height: 42px !important;
+  padding: 0 !important;
+  background-image: url('/images/Frame 2-new.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  z-index: 9999;  */
 }
 @media (max-width:768px){
   #slider-carousel .slick-next{

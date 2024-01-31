@@ -42,9 +42,6 @@ export default function Home() {
   const handleGetPricingClick = (e) => {
     setOpenPricing(true);
   };
-  useEffect(() => {
-    console.log(open, "open");
-  }, [open]);
 
   const closeImage = () => {
     setSelectedImage(null);
@@ -675,7 +672,6 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-8 md:max-w-[700px] max-w-full mx-auto mb-[80px] images-tran">
               {tab === "all-initial"
                 ? tabArrInitial[0]?.images.map((imgSrc, idx) => {
-                    console.log(imgSrc, "imgSrc");
                     return (
                       //   <div className="relative overflow-hidden" key={idx}>
                       //     <img
