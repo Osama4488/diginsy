@@ -205,11 +205,19 @@ export default function Home() {
     setTab(title);
   };
 
+  // useEffect(() => {
+  //   // Close error toast after 8 seconds
+  //   const timeout = setTimeout(() => {
+  //     setShowDiscuss(true);
+  //   }, 5000);
+  //   return () => clearTimeout(timeout);
+  // }, []);
+
   useEffect(() => {
     // Close error toast after 8 seconds
     const timeout = setTimeout(() => {
-      setShowDiscuss(true);
-    }, 5000);
+      setOpen(true);
+    }, 30000);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -901,7 +909,7 @@ export default function Home() {
                     />
 
                     <PhoneInput
-                      country={"pk"}
+                      country={"us"}
                       class="input-type"
 
                       // value={this.state.phone}

@@ -130,7 +130,7 @@ export default function Modal({ open, setOpen, title }) {
                       />
 
                       <PhoneInput
-                        country={"pk"}
+                        country={"us"}
                         inputClass={`input-type-phone mb-4 ${
                           phone ? "" : "border-b-2 border-red-500"
                         }`}

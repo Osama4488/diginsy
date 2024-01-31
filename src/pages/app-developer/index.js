@@ -901,7 +901,7 @@ export default function Home() {
                     />
 
                     <PhoneInput
-                      country={"pk"}
+                      country={"us"}
                       class="input-type"
 
                       // value={this.state.phone}

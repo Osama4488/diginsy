@@ -990,7 +990,7 @@ span.author-name strong {
 
 
 #slider-carousel .slick-prev{
-  position: absolute !important;
+  /* position: absolute !important;
   top: 56% ;
   font-size: 16px !important;
   left: 20px !important;
@@ -1000,12 +1000,29 @@ span.author-name strong {
   width: 42px !important;
   text-align: center;
   height: 42px !important;
-  /* color: #fff ;   */
+
   border-radius: 100% !important;
+ */
+
+
+  position: absolute !important;
+  top: 56% !important;
+  left: 20px !important;
+  width: 42px !important;
+  height: 42px !important;
+  padding: 0 !important;
+  background-image: url('/images/arrow-red2.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  z-index: 9999; 
+}
+#slider-carousel .slick-prev::before{
+  content: "";
 }
 @media (max-width:768px){
   #slider-carousel .slick-prev{
-  top: 96% ;
+  top: 96% !important;
 
   }
 }
@@ -1013,7 +1030,7 @@ span.author-name strong {
 
 
 #slider-carousel .slick-next{
-  position: absolute !important;
+  /* position: absolute !important;
   top: 56% ;
   font-size: 16px !important;
   right: 20px !important;
@@ -1024,22 +1041,27 @@ span.author-name strong {
   text-align: center !important;
   height: 42px !important;
 
-  border-radius: 100% !important;
-  /* position: absolute !important;
+  border-radius: 100% !important; */
+  position: absolute !important;
   top: 56% !important;
   right: 20px !important;
   width: 52px !important;
   height: 42px !important;
   padding: 0 !important;
-  background-image: url('/images/Frame 2-new.svg');
+  background-image: url('/images/arrow-red1.png');
   background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
-  z-index: 9999;  */
+  z-index: 9999; 
+}
+
+#slider-carousel .slick-next:before{
+  content: "";
 }
 @media (max-width:768px){
   #slider-carousel .slick-next{
-  top: 96% ;
+  top: 96% !important;
+  right: 10px !important;
 
   }
 }
