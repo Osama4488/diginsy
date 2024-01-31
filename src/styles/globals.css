@@ -1,13 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
 
-
+@font-face {
+  font-family: 'Lato';
+  font-style: medium;
+  font-weight: normal;
+  font-display: swap;
+}
 
   body {
   
-      font-family: sans-serif;
-    
+    font-family: 'Lato', sans-serif;
     font-size: 14px;
     color: #7d7d7d;
     overflow-x: hidden;
@@ -15,7 +21,7 @@
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
    /* font-family: inherit; */
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.1;
 }
 
@@ -23,7 +29,7 @@ div{
   margin: 0;
     padding: 0;
     border: 0;
-    font: inherit;
+    /* font: inherit; */
     vertical-align: top;
 }
 .btn-red{
@@ -71,6 +77,14 @@ div{
   overflow: hidden;
 }
 
+#second-section-carousel-screen {
+  position: absolute !important;
+  top: -50px; /* Adjust this value to position it above the upper section */
+  left: 950px;
+  /* width: 100%; */
+  z-index: 999; /* Set a higher z-index value */
+  border: 10px solid #fff;
+}
 
 .banner h1{
   font-weight: 700;
@@ -221,9 +235,9 @@ div{
   color: #fff;
 
 }
-h2 {
-  font-family: 'Lato', sans-serif; /* Specify Lato Sans as the font family */
-  font-weight: 700 !important; /* Set the font weight to 800 */
+h1,h2 {
+  font-family:'Lato',  sans-serif; /* Specify Lato Sans as the font family */
+  font-weight: 700 !important; 
 }
 p{
   font-family: 'Lato', sans-serif;
@@ -894,11 +908,19 @@ span.author-name strong {
   color: #fff;
   height: 60px;
     display: block;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     width: fit-content;
     border: 1px solid #e5e5e5;
     padding: 17px 10px 16px 20px;
     cursor: pointer;
+}
+@media (max-width:768px) {
+  .form-button {
+    width: 100%;
+    text-align: center;
+
+  }
+
 }
 
 
@@ -932,16 +954,17 @@ span.author-name strong {
 }
 
 
-.carousel-image-second{
+/* .carousel-image-second{
   width: 100%;
   max-width: initial;
   border: 6px solid #fff;
-}
+} */
+
 
 
 #slider-carousel .slick-prev{
   position: absolute !important;
-  top: 56% !important;
+  top: 56% ;
   font-size: 16px !important;
   left: 20px !important;
   background: #c52026 !important;
@@ -953,12 +976,18 @@ span.author-name strong {
   /* color: #fff ;   */
   border-radius: 100% !important;
 }
+@media (max-width:768px){
+  #slider-carousel .slick-prev{
+  top: 96% ;
+
+  }
+}
 
 
 
-.slick-next{
+#slider-carousel .slick-next{
   position: absolute !important;
-  top: 56% !important;
+  top: 56% ;
   font-size: 16px !important;
   right: 20px !important;
   background: #c52026 !important;
@@ -967,8 +996,14 @@ span.author-name strong {
   width: 42px !important;
   text-align: center !important;
   height: 42px !important;
-  color: #fff;
+  /* color: #fff; */
   border-radius: 100% !important;
+}
+@media (max-width:768px){
+  #slider-carousel .slick-next{
+  top: 96% ;
+
+  }
 }
 
 
@@ -989,6 +1024,15 @@ span.author-name strong {
   z-index: 9999; 
 
 }
+@media (max-width:768px){
+  #second-section-carousel .slick-second-prev{
+  background-image: url('/images/left-blue.png');
+  left: 146px !important;
+  top: 85% !important;
+  width: 30px !important;
+  height: 30px !important;
+  }
+}
 #second-section-carousel .slick-prev::before{
   content:""
 }
@@ -1006,9 +1050,80 @@ span.author-name strong {
   z-index: 9999; 
 
 }
+@media (max-width:768px){
+  #second-section-carousel .slick-second-next{
+  background-image: url('/images/right-blue.png') !important;
+  left: 190px !important;
+  top: 85% !important;
+  width: 30px !important;
+  height: 30px !important;
+
+  }
+}
+
 #second-section-carousel .slick-next::before{
   content:""
 }
+
+
+
+.animation-overlay
+{
+  background: #2253ed;
+  position: absolute;
+  width: 89%;
+  z-index: 9;
+  bottom: 90px;
+  padding: 32px 28px 28px 32px;
+  color: #fff;
+  text-align: left;
+  left: -120%;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+.banner-style{
+border: 1px solid #fff;
+
+}
+.banner-tag {
+  display: inline-block;
+  border: 1px solid #fff;
+  padding: 3px 10px;
+  position: absolute;
+  right: 40px;
+  top: 44px;
+  font-weight: 600;
+}
+.full-version-style {
+  color: #fff;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+
+
+
+/* second section mobile carousel */
+/* .slick-next-mobile{
+  position: absolute !important;
+  top: 56% !important;
+  font-size: 16px !important;
+  right: 116px !important;
+  background: #c52026 !important;
+  font-weight: 700 !important;
+  padding: 11px !important; 
+  width: 42px !important;
+  text-align: center !important;
+  height: 42px !important;
+
+  border-radius: 100% !important;
+} */
+
+
+
+
 /* #second-section-carousel .slick-next {
   position: absolute !important;
   top: 56% !important;

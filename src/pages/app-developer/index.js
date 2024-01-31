@@ -19,7 +19,8 @@ import { RiComputerLine } from "react-icons/ri";
 import { FaRegNoteSticky } from "react-icons/fa6";
 import { FaMobileAlt } from "react-icons/fa";
 import { SlGraph } from "react-icons/sl";
-
+import { motion } from "framer-motion";
+import Animation from "../../components/animation";
 import { useRouter } from "next/router";
 
 export default function Home() {
@@ -88,6 +89,30 @@ export default function Home() {
     {
       title: "games",
       images: ["/images/game1.png", "/images/game2.png"],
+    },
+  ];
+
+  const tabArrInitial = [
+    {
+      title: "all-initial",
+      images: [
+        {
+          bannerTxt: (
+            <>
+              Food <br /> Finder
+            </>
+          ),
+          img: "/images/android1.png",
+        },
+        {
+          bannerTxt: "Nasa99",
+          img: "/images/android2.png",
+        },
+        {
+          bannerTxt: "Trip",
+          img: "/images/android3.png",
+        },
+      ],
     },
   ];
   const carouselArr = [
@@ -188,40 +213,7 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, []);
 
-  useEffect(() => {
-    console.log(showDiscuss, "showDiscuss");
-  }, []);
-
   return showDiscuss ? (
-    // <div className="absolute inset-0 bg-[#fff] opacity-50 z-50 h-screen"></div>
-    // <div className="relative">
-    //   <div className="absolute inset-0 bg-[#fff] opacity-50 z-50 h-screen">
-    //     <div className="flex justify-end  top-4 right-4 cursor-pointer p-8">
-    //       {/* Add your close icon or button here */}
-    //       <button
-    //         onClick={() => setShowDiscuss(false)}
-    //         className="text-gray-500 "
-    //       >
-    //         {/* Example of close icon */}
-    //         <svg
-    //           xmlns="http://www.w3.org/2000/svg"
-    //           className="h-8 w-8"
-    //           fill="none"
-    //           viewBox="0 0 24 24"
-    //           stroke="black" // Change stroke color to black
-    //         >
-    //           <path
-    //             strokeLinecap="round"
-    //             strokeLinejoin="round"
-    //             strokeWidth={2}
-    //             d="M6 18L18 6M6 6l12 12"
-    //           />
-    //         </svg>
-    //       </button>
-    //     </div>
-    //   </div>
-
-    // </div>
     <div className="relative">
       <div className="absolute top-4 right-4 cursor-pointer p-8">
         <button onClick={() => setShowDiscuss(false)} className="">
@@ -255,19 +247,19 @@ export default function Home() {
           . Act Now!{" "}
         </div>
 
-        <form className="max-w-[1160px] w-full">
+        <form className="max-w-[960px] w-full md:px-0 px-5 flex md:flex-row flex-col items-center justify-between mt-[20px]   ">
           {/* Add your form fields here */}
-          <div className="mb-4 mt-[30px]">
+          <div className=" md:w-[250px] w-full">
             <input
               type="text"
-              class="show-discuss-input outline-none"
+              class="show-discuss-input outline-none "
               required=""
               placeholder="Full Name *"
               name="cn"
               aria-required="true"
             />
           </div>
-          <div className="mb-4  ">
+          <div className=" md:w-[250px] md:mt-0 mt-4 w-full ">
             <input
               type="text"
               class="show-discuss-input outline-none"
@@ -277,7 +269,7 @@ export default function Home() {
               aria-required="true"
             />
           </div>
-          <div className="mb-4  ">
+          <div className=" md:w-[250px] md:mt-0 md:mb-0 mb-4 mt-4 w-full ">
             <input
               type="text"
               class="show-discuss-input outline-none"
@@ -402,7 +394,7 @@ export default function Home() {
 
         {/* second section */}
 
-        <section class="hm-col1 flex md:flex-row flex-col md:px-0 px-5">
+        <section class="hm-col1 flex md:flex-row flex-col md:px-0 px-5 relative">
           <div class="col-md-6 md:text-left text-center">
             <div class="main-content">
               <div class="text-block">
@@ -476,8 +468,23 @@ export default function Home() {
           >
             <Slider {...settingsSecond}>
               {dummyImages.map((image, index) => (
+                // <div
+                //   className="carousel-image-second relative w-full -top-[50px] -z-50 h-[900px]"
+                //   key={index}
+                // >
+                //   <img
+                //     className="w-full"
+                //     src={image.img1}
+                //     alt={`Slide ${index + 1}`}
+                //   />
+
+                //   <img
+                //     className="absolute top-[200px] md:left-[280px] left-[22px] md:w-auto md:h-auto w-[300px] h-[319px] object-contain"
+                //     src={image.img2}
+                //   />
+                // </div>
                 <div
-                  className="carousel-image-second relative w-full -top-[50px] -z-50 h-[900px]"
+                  className="carousel-image-second relative w-full -top-[50px] -z-50 md:h-[900px] h-[600px]"
                   key={index}
                 >
                   <img
@@ -487,7 +494,7 @@ export default function Home() {
                   />
 
                   <img
-                    className="absolute top-[200px] md:left-[280px] left-[22px] md:w-auto md:h-auto w-[300px] h-[319px] object-contain"
+                    className="absolute top-[200px] md:left-[280px] left-[22px] md:w-auto md:h-auto w-[300px] h-[319px] object-contain transition-opacity duration-500 delay-500"
                     src={image.img2}
                   />
                 </div>
@@ -659,30 +666,62 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-2 gap-8 md:max-w-[700px] max-w-full mx-auto mb-[80px] images-tran">
-              {tabsArr
+              {tab === "all-initial"
+                ? tabArrInitial[0]?.images.map((imgSrc, idx) => {
+                    console.log(imgSrc, "imgSrc");
+                    return (
+                      //   <div className="relative overflow-hidden" key={idx}>
+                      //     <img
+                      //       className="w-[386px] group md:h-[468px] h-[214px] object-cover cursor-pointer"
+                      //       src={imgSrc}
+                      //       alt={`Left Image ${idx}`}
+                      //       onClick={() => openImage(imgSrc)}
+                      //       // width={386}
+                      //     />
+                      //     <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-500 transform translate-x-[-100%] transition-transform duration-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"></div>
+                      //   </div>
+                      <Animation
+                        imgSrc={imgSrc.img}
+                        text={imgSrc.img && imgSrc.bannerTxt}
+                        idx={idx}
+                        openImage={openImage}
+                      />
+                    );
+                  })
+                : tabsArr
+                    .find((tabItem) => tabItem.title === tab)
+                    ?.images.map((imgSrc, idx) => (
+                      //   <div className="relative overflow-hidden" key={idx}>
+                      //     <img
+                      //       className="w-[386px] group md:h-[468px] h-[214px] object-cover cursor-pointer"
+                      //       src={imgSrc}
+                      //       alt={`Left Image ${idx}`}
+                      //       onClick={() => openImage(imgSrc)}
+                      //       // width={386}
+                      //     />
+                      //     <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-500 transform translate-x-[-100%] transition-transform duration-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"></div>
+                      //   </div>
+                      <Animation
+                        imgSrc={imgSrc}
+                        idx={idx}
+                        openImage={openImage}
+                      />
+                    ))}
+              {/* {tabsArr
                 .find((tabItem) => tabItem.title === tab)
                 ?.images.map((imgSrc, idx) => (
-                  <div key={idx}>
-                    <img
-                      className="w-[386px] group md:h-[468px] h-[214px] object-cover cursor-pointer"
-                      src={imgSrc}
-                      alt={`Left Image ${idx}`}
-                      onClick={() => openImage(imgSrc)}
-                      // width={386}
-                    />
-
-                    {/* <div class="portoflio-overlay grup-hover:block hidden">
-                      <span class="pf-tag">iPhone</span>
-                      <h5>
-                        Food <br />
-                        Finder
-                      </h5>
-                      <span>
-                        <i class="icon-arrow-right-half"></i>Full Version
-                      </span>
-                    </div> */}
-                  </div>
-                ))}
+                  //   <div className="relative overflow-hidden" key={idx}>
+                  //     <img
+                  //       className="w-[386px] group md:h-[468px] h-[214px] object-cover cursor-pointer"
+                  //       src={imgSrc}
+                  //       alt={`Left Image ${idx}`}
+                  //       onClick={() => openImage(imgSrc)}
+                  //       // width={386}
+                  //     />
+                  //     <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-500 transform translate-x-[-100%] transition-transform duration-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"></div>
+                  //   </div>
+                  <Animation imgSrc={imgSrc} idx={idx} openImage={openImage} />
+                ))} */}
             </div>
             {selectedImage && (
               <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
@@ -710,7 +749,7 @@ export default function Home() {
             <Button type="link">Link Button</Button>
           </Flex> */}
 
-            <div className="">
+            <div className="md:block flex flex-col">
               <a
                 href="javascript:;"
                 class="btn-blue-border various uppercase"
@@ -726,7 +765,7 @@ export default function Home() {
                 <a
                   style={{ color: "#fff" }}
                   href="javascript:;"
-                  class="btn-blue-border various uppercase ml-4 bg-[blue] "
+                  class="btn-blue-border various uppercase md:ml-4 ml-0 md:mt-0 mt-4 bg-[blue] "
                   name="0"
                   data-fancybox=""
                   data-src="#popupform"
