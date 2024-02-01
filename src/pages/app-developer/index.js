@@ -1,6 +1,6 @@
 // import Image from "next/image";
 // import { Inter } from "next/font/google";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Slider from "react-slick";
 // import { Button, Flex } from "antd";
 import PhoneInput from "react-phone-input-2";
@@ -32,7 +32,7 @@ export default function Home() {
   const [errorToast, setErrorToast] = useState(false);
   const [showDiscuss, setShowDiscuss] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-
+  const sliderRef = useRef(null);
   const openImage = (imgSrc) => {
     setSelectedImage(imgSrc);
   };
@@ -183,7 +183,7 @@ export default function Home() {
       <div
         // className={className}
         className="slick-second-prev "
-        style={{ ...style, display: "block" }}
+        // style={{ ...style }}
         onClick={onClick}
       />
     );
@@ -195,7 +195,7 @@ export default function Home() {
       <div
         // className={className}
         className="slick-second-next"
-        style={{ ...style, display: "block" }}
+        // style={{ ...style, display: "block" }}
         onClick={onClick}
       />
     );
@@ -205,13 +205,21 @@ export default function Home() {
     setTab(title);
   };
 
-  //   useEffect(() => {
-  //     // Close error toast after 8 seconds
-  //     const timeout = setTimeout(() => {
-  //       setShowDiscuss(true);
-  //     }, 5000);
-  //     return () => clearTimeout(timeout);
-  //   }, []);
+  // useEffect(() => {
+  //   // Close error toast after 8 seconds
+  //   const timeout = setTimeout(() => {
+  //     setShowDiscuss(true);
+  //   }, 5000);
+  //   return () => clearTimeout(timeout);
+  // }, []);
+
+  useEffect(() => {
+    // Close error toast after 8 seconds
+    const timeout = setTimeout(() => {
+      setOpen(true);
+    }, 30000);
+    return () => clearTimeout(timeout);
+  }, []);
 
   return showDiscuss ? (
     <div className="relative">
@@ -299,7 +307,7 @@ export default function Home() {
           <a
             href="#"
             //   class="btn-red"
-            className="btn-red top-quote md:block hidden"
+            className="btn-red top-quote md:block hidden z-20"
             name="0"
             data-fancybox=""
             data-src="#popupform"
@@ -355,7 +363,7 @@ export default function Home() {
               </div>
             </header>
 
-            <div className="sm:py-[120px] py-[40px] smpb-0 pb-[84px] md:px-0 px-3">
+            <div className="sm:pt-[90px] sm:pb-[140px] py-[40px] smpb-0 pb-[84px] md:px-0 px-3">
               <h1 className="text-center sm:text-[56px] text-[20px]">
                 <span className="banner-span">Turning incredible </span> <br />
                 <em> mobile app development</em> ideas to reality
@@ -466,20 +474,22 @@ export default function Home() {
             id="second-section-carousel"
             class="col-md-6 pd-left-0 relative "
           >
-            <Slider {...settingsSecond}>
+            <Slider ref={sliderRef} {...settingsSecond}>
               {/* {dummyImages.map((image, index) => (
                 <div
                   className="carousel-image-second relative w-full -top-[50px] -z-50 md:h-[900px] h-[400px]"
                   key={index}
                 >
                   <img
-                    className="w-full bg-img-1 animation-image"
+                    className={`w-full bg-img-1 animation-image md:h-[700px] ${
+                      currentSlide === index ? "animate" : ""
+                    }`}
                     src={image.img1}
                     alt={`Slide ${index + 1}`}
                   />
 
                   <img
-                    className="absolute md:top-[200px] top-[111px] md:left-[280px] left-[22px] md:w-auto md:h-auto w-[300px] h-[319px] object-contain transition-opacity duration-500 delay-500"
+                    className="md:absolute absolute-center md:w-auto md:h-auto w-[300px] h-[319px] object-contain transition-opacity duration-500 delay-500"
                     src={image.img2}
                   />
                 </div>
@@ -490,21 +500,33 @@ export default function Home() {
                   key={index}
                 >
                   <img
-                    className={`w-full bg-img-1 animation-image ${
+                    className={`w-full bg-img-1 animation-image md:h-[700px] ${
                       currentSlide === index ? "animate" : ""
                     }`}
                     src={image.img1}
                     alt={`Slide ${index + 1}`}
                   />
-
-                  <img
-                    className="absolute md:top-[200px] top-[111px] md:left-[280px] left-[22px] md:w-auto md:h-auto w-[300px] h-[319px] object-contain transition-opacity duration-500 delay-500"
-                    src={image.img2}
-                  />
+                  <div className="md:absolute md:flex md:items-center absolute-center w-[300px] h-[319px] object-contain transition-opacity duration-500 delay-500">
+                    <img
+                      className="md:w-auto md:h-auto w-[300px] h-[319px] object-contain"
+                      src={image.img2}
+                      alt={`Slide ${index + 1}`}
+                    />
+                  </div>
                 </div>
               ))}
             </Slider>
           </div>
+          {/* <div className="flex justify-center mt-4">
+            <button
+              onClick={() => sliderRef.current.slickPrev()}
+              className="slick-second-prev-mobile md:hidden block"
+            ></button>
+            <button
+              onClick={() => sliderRef.current.slickNext()}
+              className="slick-second-next-mobile"
+            ></button>
+          </div> */}
         </section>
 
         <section>
@@ -1002,7 +1024,7 @@ export default function Home() {
         </section>
 
         {/* footer */}
-        <footer className="md:px-0 px-5">
+        <footer className="md:px-0 px-5 footer-home">
           <div class="container max-w-[1170px] mx-auto ">
             <div className="flex flex-col items-center justify-center">
               <h2>Let’s work together!</h2>

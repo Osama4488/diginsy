@@ -3,18 +3,19 @@ import { Dialog, Transition } from "@headlessui/react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { IoMdClose } from "react-icons/io";
+import { useRouter } from "next/router";
 
 export default function Modal({ open, setOpen, title }) {
   const cancelButtonRef = useRef(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState();
-  const [projectDescription, setProjectDescription] = useState("");
+  const [msg, setMsg] = useState("");
   const [errorToast, setErrorToast] = useState(false);
-
+  const router = useRouter();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim() || !projectDescription.trim()) {
+    if (!name.trim() || !email.trim() || !msg.trim()) {
       // Handle form submission when fields are empty
       setErrorToast(true);
       console.log("Please fill in all fields");
@@ -22,6 +23,7 @@ export default function Modal({ open, setOpen, title }) {
     } else {
       // Handle form submission when fields are not empty
       console.log("Form submitted successfully");
+      router.push("/thank-you");
     }
   };
 
@@ -111,7 +113,7 @@ export default function Modal({ open, setOpen, title }) {
                         // required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        name="cn"
+                        name="name"
                         placeholder="Your Name"
                         aria-required="true"
                       />
@@ -124,7 +126,7 @@ export default function Modal({ open, setOpen, title }) {
                         // required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        name="em"
+                        name="email"
                         placeholder="Your Email"
                         aria-required="true"
                       />
@@ -136,31 +138,38 @@ export default function Modal({ open, setOpen, title }) {
                         }`}
                         value={phone}
                         onChange={(phone) => setPhone(phone)}
+                        name="phone"
                       />
                     </div>
 
                     <textarea
                       className={`input-type mb-4 md:ml-2 ml-0 md:h-[186px] h-[86px] ${
-                        projectDescription.trim()
-                          ? ""
-                          : "border-b-2 border-red-500"
+                        msg.trim() ? "" : "border-b-2 border-red-500"
                       }`}
                       rows="8"
-                      value={projectDescription}
-                      onChange={(e) => setProjectDescription(e.target.value)}
+                      value={msg}
+                      onChange={(e) => setMsg(e.target.value)}
                       placeholder="Enter a brief description of your App Project"
+                      name="msg"
+                      required
                     />
                   </div>
-                  <p class="form_tagline text-[12px] md:mt-0 mt-[25px]">
-                    {" "}
-                    <input type="checkbox" name="agree" /> &nbsp; To receive our
-                    weekly Newsletter/SMS and offers check here. You can
-                    unsubscribe at any time.
-                  </p>
+
+                  <div className="flex">
+                    <div class="custom-checkbox">
+                      <input type="checkbox" id="myCheckbox" />
+                    </div>
+
+                    <p class="ml-4 form_tagline text-[12px] md:mt-0 mt-[25px]">
+                      &nbsp; To receive our weekly Newsletter/SMS and offers
+                      check here. You can unsubscribe at any time.
+                    </p>
+                  </div>
 
                   <div className="flex justify-center items-center relative -top-[16px]">
                     <button
                       type="submit"
+                      value="Submit"
                       className="btn-hero-1 uppercase md:w-[198px] w-full text-[23px] flex justify-center items-center "
                       name="0"
                       data-fancybox=""

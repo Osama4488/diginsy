@@ -724,13 +724,19 @@ section.testimonial-col h2+p {
   display:  flex !important;
 }
 
-footer {
+.footer-home {
   background: url(https://www.applistix.com/lp-app-development/assets/images/footer-bg.jpg) center top no-repeat;
   background-size: cover;
-  padding: 50px 0 20px;
+  padding: 50px 20px;
   color: #fff;
 }
-footer h2 {
+@media (max-width:768px) {
+  .footer-home{
+    padding: 50px 20x !important;
+
+  }
+}
+.footer-home h2 {
   font-weight: 700;
   color: #fff;
   font-size: 49px;
@@ -1067,6 +1073,49 @@ span.author-name strong {
 }
 
 
+.slick-second-prev-mobile {
+  
+  display: none;
+}
+@media (max-width:768px) {
+  .slick-second-prev-mobile{
+    background-image: url('/images/left-blue.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    z-index: 9999; 
+    width: 52px !important;
+    height: 32px !important;
+  }
+}
+
+.slick-second-prev-mobile::before{
+  content: "";
+}
+
+.slick-second-next-mobile{
+ display: none;
+}
+@media (max-width:768px) {
+  .slick-second-next-mobile{
+    background-image: url('/images/right-blue.png');
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    z-index: 9999; 
+    width: 52px !important;
+    height: 32px !important;
+  }
+}
+.slick-second-next-mobile::before{
+content: "";
+}
+
+
+
+
+
 
 
 
@@ -1093,6 +1142,36 @@ span.author-name strong {
   height: 30px !important;
   }
 }
+/* #second-section-carousel .slick-second-prev {
+  position: absolute !important;
+  top: 56% !important;
+  left: -46px !important;
+  width: 52px !important;
+  height: 121px !important;
+  padding: 0 !important;
+  background-image: url('/images/Frame 2-new.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  z-index: 9999; 
+}
+
+@media (max-width: 768px) {
+  #second-section-carousel .slick-second-prev {
+    background-image: url('/images/left-blue.png');
+    left: 50%;
+  top: 56% !important;
+
+    transform: translateX(-50%);
+  
+  }
+} */
+
+
+
+
+
+
 #second-section-carousel .slick-prev::before{
   content:""
 }
@@ -1231,6 +1310,8 @@ border: 1px solid #fff;
     opacity: 1;  
   }  
 }
+
+
 
 
 

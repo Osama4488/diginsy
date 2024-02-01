@@ -9,12 +9,13 @@ export default function Modal({ open, setOpen, title }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState();
-  const [projectDescription, setProjectDescription] = useState("");
+  const [msg, setMsg] = useState("");
+
   const [errorToast, setErrorToast] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim() || !projectDescription.trim()) {
+    if (!name.trim() || !email.trim() || !msg.trim()) {
       // Handle form submission when fields are empty
       setErrorToast(true);
       console.log("Please fill in all fields");
@@ -141,13 +142,11 @@ export default function Modal({ open, setOpen, title }) {
 
                     <textarea
                       className={`input-type mb-4 md:ml-2 ml-0 md:h-[186px] h-[86px] ${
-                        projectDescription.trim()
-                          ? ""
-                          : "border-b-2 border-red-500"
+                        msg.trim() ? "" : "border-b-2 border-red-500"
                       }`}
                       rows="8"
-                      value={projectDescription}
-                      onChange={(e) => setProjectDescription(e.target.value)}
+                      value={msg}
+                      onChange={(e) => setMsg(e.target.value)}
                       placeholder="Enter a brief description of your App Project"
                     />
                   </div>
