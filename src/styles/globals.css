@@ -264,7 +264,7 @@ div{
 }
 h1,h2 {
   font-family:'Lato',  sans-serif; /* Specify Lato Sans as the font family */
-  font-weight: 800 !important; 
+  font-weight: 800; 
 }
 p{
   font-family: 'Lato', sans-serif;
@@ -299,7 +299,7 @@ p{
 
 section.hm-col1 {
   /* position: relative; */
-  padding-bottom: 33px;
+  /* padding-bottom: 33px; */
   z-index: 1;
 }
 @media (min-width: 992px){
@@ -640,7 +640,7 @@ section.services .item>div i {
   -moz-osx-font-smoothing: grayscale;
 }
 section.footer-form {
-  padding: 20px 0;
+  padding: 25px 0;
   color: #000;
   background: url(https://www.applistix.com/lp-app-development/assets/images/footer-frm-bg.jpg) left top;
   text-align: center;
@@ -675,7 +675,7 @@ section.footer-form h2+p {
 }
 section.testimonial-col {
   padding: 40px 0 60px;
-  margin-top: 273px;
+  margin-top: 136px;
   color: #000;
   text-align: center;
 }
@@ -1121,7 +1121,7 @@ content: "";
 
 #second-section-carousel .slick-second-prev {
   position: absolute !important;
-  top: 56% !important;
+  top: 67% !important;
   left: -46px !important;
   width: 52px !important;
   height: 121px !important;
@@ -1177,7 +1177,7 @@ content: "";
 }
 #second-section-carousel .slick-second-next {
   position: absolute !important;
-  top: 56% !important;
+  top: 67% !important;
   left: 8px !important;
   width: 52px !important;
   height: 121px !important;

@@ -11,20 +11,21 @@ export default function Modal({ open, setOpen, title }) {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState();
   const [msg, setMsg] = useState("");
+  const [check, setCheck] = useState(false);
   const [errorToast, setErrorToast] = useState(false);
   const router = useRouter();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim() || !msg.trim()) {
-      // Handle form submission when fields are empty
-      setErrorToast(true);
-      console.log("Please fill in all fields");
-      // You can also add additional logic here such as displaying an error message
-    } else {
-      // Handle form submission when fields are not empty
-      console.log("Form submitted successfully");
-      router.push("/thank-you");
-    }
+    // if (!name.trim() || !email.trim() || !msg.trim()) {
+    //   // Handle form submission when fields are empty
+    //   setErrorToast(true);
+    //   console.log("Please fill in all fields");
+    //   // You can also add additional logic here such as displaying an error message
+    // } else {
+    // Handle form submission when fields are not empty
+    console.log("Form submitted successfully");
+    router.push("/thank-you");
+    // }
   };
 
   useEffect(() => {
@@ -34,6 +35,10 @@ export default function Modal({ open, setOpen, title }) {
     }, 3000);
     return () => clearTimeout(timeout);
   }, [errorToast]);
+
+  useEffect(() => {
+    console.log(check, "check");
+  }, [check]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -66,17 +71,6 @@ export default function Modal({ open, setOpen, title }) {
             leaveTo="opacity-0 scale-95"
           >
             <div className="relative bg-white rounded-lg md:w-[900px] w-full mx-auto flex ">
-              {/* <button
-                data-fancybox-close=""
-                class=" bg-[blue] w-[38px] h-[42px] "
-                title="Close"
-              > */}
-              {/* <IoMdClose
-                className="fancybox-close-small"
-                size={20}
-                color="#fff"
-              /> */}
-              {/* </button> */}
               <button
                 className="absolute top-0 right-0 p-2"
                 onClick={() => setOpen(false)} // Close modal on button click
@@ -92,7 +86,9 @@ export default function Modal({ open, setOpen, title }) {
                 />
               </div>
               <div className="md:w-70 w-full md:px-[25px] px-[12px] pt-[10px] md:mb-0 pb-[30px] popup-content">
-                <h2>GET A FREE QUOTE</h2>
+                <h2 className="font-bold" style={{ fontWeight: "900" }}>
+                  GET A FREE QUOTE
+                </h2>
                 <p>
                   Discuss your app idea with our consultants and we'll help you{" "}
                   <br className="md:block hidden" />
@@ -116,6 +112,7 @@ export default function Modal({ open, setOpen, title }) {
                         name="name"
                         placeholder="Your Name"
                         aria-required="true"
+                        required
                       />
 
                       <input
@@ -129,9 +126,13 @@ export default function Modal({ open, setOpen, title }) {
                         name="email"
                         placeholder="Your Email"
                         aria-required="true"
+                        required
                       />
 
                       <PhoneInput
+                        inputProps={{
+                          required: true,
+                        }}
                         country={"us"}
                         inputClass={`input-type-phone mb-4 ${
                           phone ? "" : "border-b-2 border-red-500"
@@ -154,37 +155,45 @@ export default function Modal({ open, setOpen, title }) {
                       required
                     />
                   </div>
+                  <div className="flex mt-[25px]">
+                    <input
+                      onChange={() => setCheck(!check)}
+                      type="checkbox"
+                      name="agree"
+                      className="z-50"
+                      required
+                    />
 
-                  <div className="flex">
-                    <div class="custom-checkbox">
-                      <input type="checkbox" id="myCheckbox" />
-                    </div>
-
-                    <p class="ml-4 form_tagline text-[12px] md:mt-0 mt-[25px]">
+                    <p class="ml-2 form_tagline text-[12px] md:mt-0 mt-[25px]">
                       &nbsp; To receive our weekly Newsletter/SMS and offers
                       check here. You can unsubscribe at any time.
                     </p>
                   </div>
-
-                  <div className="flex justify-center items-center relative -top-[16px]">
+                  {/* -top-[16px] */}
+                  {/* <div className="flex justify-center items-center relative "> */}
+                  <div className="flex justify-center items-center">
                     <button
                       type="submit"
                       value="Submit"
-                      className="btn-hero-1 uppercase md:w-[198px] w-full text-[23px] flex justify-center items-center "
+                      className="btn-hero-1 uppercase md:w-[198px] w-full text-[23px] flex justify-center items-center relative top-[16px]"
                       name="0"
                       data-fancybox=""
                       data-src="#popupform"
                       title="GET A FREE QUOTE"
                       style={{
-                        fontSize: "23px",
+                        fontSize: "18px",
                         display: "flex",
                         justifyContent: "center",
                         marginTop: "0px",
+                        fontWeight: "900",
+                        letterSpacing: "1.5px",
+                        top: "15px",
                       }}
                     >
                       Submit
                     </button>
                   </div>
+                  {/* </div> */}
                 </form>
               </div>
               {errorToast && (

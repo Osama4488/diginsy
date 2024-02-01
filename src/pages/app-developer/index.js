@@ -32,6 +32,10 @@ export default function Home() {
   const [errorToast, setErrorToast] = useState(false);
   const [showDiscuss, setShowDiscuss] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [phone, setPhone] = useState("");
+  const [errorPhone, setErrorPhone] = useState(false);
+  const [check, setCheck] = useState(false);
+
   const sliderRef = useRef(null);
   const openImage = (imgSrc) => {
     setSelectedImage(imgSrc);
@@ -53,8 +57,8 @@ export default function Home() {
       images: [
         "/images/android1.png",
         "/images/android2.png",
-
         "/images/android3.png",
+        "/images/ios1.png",
       ],
     },
     {
@@ -65,7 +69,6 @@ export default function Home() {
         "/images/android3.png",
         "/images/android4.png",
         "/images/ios1.png",
-
         "/images/ios2.png",
         "/images/ios3.png",
         "/images/game1.png",
@@ -91,6 +94,35 @@ export default function Home() {
     },
   ];
 
+  useEffect(() => {
+    console.log(errorPhone, "errorPhone");
+  }, [errorPhone]);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    // if (!name.trim() || !email.trim() || !msg.trim()) {
+    //   // Handle form submission when fields are empty
+    //   setErrorToast(true);
+    //   console.log("Please fill in all fields");
+    //   // You can also add additional logic here such as displaying an error message
+    // } else {
+    // Handle form submission when fields are not empty
+    console.log(phone, "phone");
+    if (!phone.trim()) {
+      setErrorPhone(true);
+    } else {
+      console.log("Form submitted successfully");
+      router.push("/thank-you");
+      setErrorPhone(false);
+    }
+
+    // }
+  };
+
+  const filteredImages = tabsArr
+    .find((tabItem) => tabItem.title === "all-initial")
+    ?.images.slice(0, 4); // Take only the first 4 images
+
   const tabArrInitial = [
     {
       title: "all-initial",
@@ -110,6 +142,11 @@ export default function Home() {
         {
           bannerTxt: "Trip",
           img: "/images/android3.png",
+        },
+        {
+          bannerTxt: "Android",
+
+          img: "/images/android4.png",
         },
       ],
     },
@@ -220,6 +257,10 @@ export default function Home() {
     }, 30000);
     return () => clearTimeout(timeout);
   }, []);
+
+  useEffect(() => {
+    console.log(tab, "tab");
+  }, [tab]);
 
   return showDiscuss ? (
     <div className="relative">
@@ -496,7 +537,7 @@ export default function Home() {
               ))} */}
               {dummyImages.map((image, index) => (
                 <div
-                  className="carousel-image-second relative w-full -top-[50px] -z-50 md:h-[900px] h-[400px]"
+                  className="carousel-image-second relative w-full -top-[50px] -z-50 md:h-[773px] h-[400px]"
                   key={index}
                 >
                   <img
@@ -508,7 +549,7 @@ export default function Home() {
                   />
                   <div className="md:absolute md:flex md:items-center absolute-center w-[300px] h-[319px] object-contain transition-opacity duration-500 delay-500">
                     <img
-                      className="md:w-auto md:h-auto w-[300px] h-[319px] object-contain"
+                      className="relative md:w-auto md:h-auto w-[300px] h-[319px] object-contain top-[100px]"
                       src={image.img2}
                       alt={`Slide ${index + 1}`}
                     />
@@ -682,6 +723,7 @@ export default function Home() {
                   <button
                     key={tabItem.title}
                     className={` fil-cat uppercase w-fit ${
+                      // || tabItem.title === "all"
                       tab === tabItem.title ? "active fil-cat-hover" : ""
                     }`}
                     onClick={() => handleTabClick(tabItem.title)}
@@ -692,61 +734,30 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-2 gap-8 md:max-w-[700px] max-w-full mx-auto mb-[80px] images-tran">
-              {tab === "all-initial"
-                ? tabArrInitial[0]?.images.map((imgSrc, idx) => {
-                    return (
-                      //   <div className="relative overflow-hidden" key={idx}>
-                      //     <img
-                      //       className="w-[386px] group md:h-[468px] h-[214px] object-cover cursor-pointer"
-                      //       src={imgSrc}
-                      //       alt={`Left Image ${idx}`}
-                      //       onClick={() => openImage(imgSrc)}
-                      //       // width={386}
-                      //     />
-                      //     <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-500 transform translate-x-[-100%] transition-transform duration-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"></div>
-                      //   </div>
-                      <Animation
-                        imgSrc={imgSrc.img}
-                        text={imgSrc.img && imgSrc.bannerTxt}
-                        idx={idx}
-                        openImage={openImage}
-                      />
-                    );
-                  })
-                : tabsArr
-                    .find((tabItem) => tabItem.title === tab)
-                    ?.images.map((imgSrc, idx) => (
-                      //   <div className="relative overflow-hidden" key={idx}>
-                      //     <img
-                      //       className="w-[386px] group md:h-[468px] h-[214px] object-cover cursor-pointer"
-                      //       src={imgSrc}
-                      //       alt={`Left Image ${idx}`}
-                      //       onClick={() => openImage(imgSrc)}
-                      //       // width={386}
-                      //     />
-                      //     <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-500 transform translate-x-[-100%] transition-transform duration-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"></div>
-                      //   </div>
-                      <Animation
-                        imgSrc={imgSrc}
-                        idx={idx}
-                        openImage={openImage}
-                      />
-                    ))}
-              {/* {tabsArr
-                .find((tabItem) => tabItem.title === tab)
-                ?.images.map((imgSrc, idx) => (
-                  //   <div className="relative overflow-hidden" key={idx}>
-                  //     <img
-                  //       className="w-[386px] group md:h-[468px] h-[214px] object-cover cursor-pointer"
-                  //       src={imgSrc}
-                  //       alt={`Left Image ${idx}`}
-                  //       onClick={() => openImage(imgSrc)}
-                  //       // width={386}
-                  //     />
-                  //     <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-500 transform translate-x-[-100%] transition-transform duration-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"></div>
-                  //   </div>
-                  <Animation imgSrc={imgSrc} idx={idx} openImage={openImage} />
-                ))} */}
+              {
+                // tab === "all-initial"
+                //   ? tabArrInitial[0]?.images.map((imgSrc, idx) => {
+                //       return (
+                //         <Animation
+                //           imgSrc={imgSrc.img}
+                //           text={imgSrc.img && imgSrc.bannerTxt}
+                //           idx={idx}
+                //           openImage={openImage}
+                //         />
+                //       );
+                //     })
+                //   :
+
+                tabsArr
+                  .find((tabItem) => tabItem.title === tab)
+                  ?.images.map((imgSrc, idx) => (
+                    <Animation
+                      imgSrc={imgSrc}
+                      idx={idx}
+                      openImage={openImage}
+                    />
+                  ))
+              }
             </div>
             {selectedImage && (
               <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
@@ -891,7 +902,7 @@ export default function Home() {
 
         {/* sixth section */}
         <section class="footer-form">
-          <div class="container md:max-w-[980px] max-w-full mx-auto md:pt-[80px] pt-[23px] pb-[60px] md:pb-[120px] md:px-[40px] px-[15px] bg-[#fff]">
+          <div class="container md:max-w-[980px] max-w-full mx-auto md:pt-[80px] pt-[23px] pb-[60px] md:pb-[100px] md:px-[40px] px-[15px] bg-[#fff]">
             <div class="row">
               <div class="col-md-10 col-md-push-1">
                 <h2>Feel Free to Contact Us</h2>
@@ -900,70 +911,82 @@ export default function Home() {
                   transform them to multi-million dollar reality.{" "}
                   <br className="md:block hidden" />
                   It's Free!
-                </p>
+                </p>{" "}
+                <form onSubmit={onSubmit}>
+                  <div className="flex md:flex-row flex-col justify-between md:max-w-[775px] max-w-full mx-auto mt-[30px]">
+                    <div className="md:w-[40%] w-full flex flex-col">
+                      <input
+                        type="text"
+                        class="input-type"
+                        required
+                        name="name"
+                        placeholder="Your Name"
+                        aria-required="true"
+                      />
 
-                <form className="flex md:flex-row flex-col justify-between md:max-w-[700px] max-w-full mx-auto md:mt-[50px] mt-[30px]">
-                  <div className="md:w-[40%] w-full flex flex-col">
-                    <input
-                      type="text"
-                      class="input-type"
-                      required=""
-                      name="cn"
-                      placeholder="Your Name"
-                      aria-required="true"
-                    />
+                      <input
+                        type="email"
+                        class="input-type"
+                        required
+                        name="email"
+                        placeholder="Your Email"
+                        aria-required="true"
+                      />
 
-                    <input
-                      type="email"
-                      class="input-type"
-                      required=""
-                      name="em"
-                      placeholder="Your Email"
-                      aria-required="true"
-                    />
-
-                    <PhoneInput
-                      country={"us"}
-                      class="input-type"
-
-                      // value={this.state.phone}
-                      // onChange={(phone) => this.setState({ phone })}
-                    />
+                      <PhoneInput
+                        inputProps={{
+                          required: true,
+                        }}
+                        country={"us"}
+                        class="input-type"
+                        isRequired
+                        // value={this.state.phone}
+                        value={phone}
+                        style={{ borderBottom: errorPhone && "2px solid red" }}
+                      />
+                    </div>
+                    <div className="md:w-[58%] w-full">
+                      <textarea
+                        className="input-type input-type-textarea"
+                        // rows="9" // Set the number of visible rows
+                        placeholder="Enter a brief description of your App Project"
+                        required
+                      />
+                    </div>
                   </div>
-                  <div className="md:w-[58%] w-full">
-                    <textarea
-                      className="input-type input-type-textarea"
-                      // rows="9" // Set the number of visible rows
-                      placeholder="Enter a brief description of your App Project"
-                    />
+
+                  <p class="form_tagline mt-[12px] text-[12px]">
+                    {" "}
+                    <input
+                      onChange={() => setCheck(!check)}
+                      type="checkbox"
+                      name="agree"
+                      required
+                    />{" "}
+                    &nbsp; To receive our weekly Newsletter/SMS and offers check
+                    here. You can unsubscribe at any time.
+                  </p>
+
+                  <div className="flex justify-center items-center relative mt-[12px] -top-[16px]">
+                    <button
+                      type="submit"
+                      value="Submit"
+                      className="btn-hero-1 uppercase md:w-[292.38px] w-full text-[23px] flex justify-center items-center "
+                      name="0"
+                      data-fancybox=""
+                      data-src="#popupform"
+                      title="GET A FREE QUOTE"
+                      style={{
+                        fontSize: "23px",
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop: "0px",
+                      }}
+                    >
+                      Submit
+                    </button>
                   </div>
                 </form>
-
-                <p class="form_tagline mt-[30px] text-[12px]">
-                  {" "}
-                  <input type="checkbox" name="agree" /> &nbsp; To receive our
-                  weekly Newsletter/SMS and offers check here. You can
-                  unsubscribe at any time.
-                </p>
-
-                <div className="flex justify-center items-center">
-                  <a
-                    href="javascript:;"
-                    class="btn-hero-1 uppercase md:w-[292px] w-full text-[23px] flex justify-center items-center"
-                    name="0"
-                    data-fancybox=""
-                    data-src="#popupform"
-                    title="GET A FREE QUOTE"
-                    style={{
-                      fontSize: "23px",
-                      display: "flex",
-                      justifyContent: "center",
-                      marginTop: "0px",
-                    }}
-                  >
-                    Submit
-                  </a>
-                </div>
               </div>
             </div>
           </div>

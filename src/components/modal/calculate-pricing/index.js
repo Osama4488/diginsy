@@ -15,15 +15,18 @@ export default function Modal({ open, setOpen, title }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim() || !msg.trim()) {
-      // Handle form submission when fields are empty
-      setErrorToast(true);
-      console.log("Please fill in all fields");
-      // You can also add additional logic here such as displaying an error message
-    } else {
-      // Handle form submission when fields are not empty
-      console.log("Form submitted successfully");
-    }
+    // if (!name.trim() || !email.trim() || !msg.trim()) {
+    //   // Handle form submission when fields are empty
+    //   setErrorToast(true);
+    //   console.log("Please fill in all fields");
+    //   // You can also add additional logic here such as displaying an error message
+    // }
+    //  else {
+    // Handle form submission when fields are not empty
+    console.log("Form submitted successfully");
+    router.push("/thank-you");
+
+    // }
   };
 
   useEffect(() => {
@@ -115,6 +118,7 @@ export default function Modal({ open, setOpen, title }) {
                         name="cn"
                         placeholder="Your Name"
                         aria-required="true"
+                        required
                       />
 
                       <input
@@ -131,12 +135,16 @@ export default function Modal({ open, setOpen, title }) {
                       />
 
                       <PhoneInput
+                        inputProps={{
+                          required: true,
+                        }}
                         country={"us"}
                         inputClass={`input-type-phone mb-4 ${
                           phone ? "" : "border-b-2 border-red-500"
                         }`}
                         value={phone}
                         onChange={(phone) => setPhone(phone)}
+                        required
                       />
                     </div>
 
@@ -148,6 +156,7 @@ export default function Modal({ open, setOpen, title }) {
                       value={msg}
                       onChange={(e) => setMsg(e.target.value)}
                       placeholder="Enter a brief description of your App Project"
+                      required
                     />
                   </div>
                   <p class="form_tagline text-[12px] md:mt-0 mt-[25px]">
